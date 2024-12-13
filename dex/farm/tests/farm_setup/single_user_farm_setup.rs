@@ -3,7 +3,6 @@
 
 use common_structs::FarmTokenAttributes;
 use multiversx_sc::codec::multi_types::{MultiValue3, OptionalValue};
-use multiversx_sc::storage::mappers::StorageTokenWrapper;
 use multiversx_sc::types::{Address, EsdtLocalRole, ManagedAddress, MultiValueEncoded};
 use multiversx_sc_scenario::whitebox_legacy::{TxContextStack, TxTokenTransfer};
 use multiversx_sc_scenario::{

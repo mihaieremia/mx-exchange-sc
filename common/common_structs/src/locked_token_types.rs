@@ -119,7 +119,7 @@ impl<M: ManagedTypeApi> UnlockScheduleEx<M> {
             let mut last_milestone = reallocated_milestones.get(last_milestone_index);
             last_milestone.unlock_percent += leftover_percent;
 
-            let _ = reallocated_milestones.set(last_milestone_index, &last_milestone);
+            let _ = reallocated_milestones.set(last_milestone_index, last_milestone);
         }
 
         self.unlock_milestones = reallocated_milestones;
