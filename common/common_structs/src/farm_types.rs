@@ -7,13 +7,13 @@ use mergeable::Mergeable;
 
 use crate::Epoch;
 
+#[type_abi]
 #[derive(
     ManagedVecItem,
     TopEncode,
     TopDecode,
     NestedEncode,
     NestedDecode,
-    TypeAbi,
     Clone,
     PartialEq,
     Debug,

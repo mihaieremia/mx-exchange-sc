@@ -8,16 +8,9 @@ use multiversx_sc::api::{CallTypeApi, StorageMapperApi};
 
 use crate::external_merging::merge_locked_tokens_through_factory;
 
+#[type_abi]
 #[derive(
-    ManagedVecItem,
-    TopEncode,
-    TopDecode,
-    NestedEncode,
-    NestedDecode,
-    TypeAbi,
-    Clone,
-    PartialEq,
-    Debug,
+    ManagedVecItem, TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, PartialEq, Debug,
 )]
 pub struct WrappedLpTokenAttributes<M: ManagedTypeApi> {
     pub lp_token_id: TokenIdentifier<M>,

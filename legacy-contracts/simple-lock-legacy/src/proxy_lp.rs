@@ -1,7 +1,8 @@
 multiversx_sc::imports!();
 multiversx_sc::derive_imports!();
 
-#[derive(TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
 pub struct LpProxyTokenAttributes<M: ManagedTypeApi> {
     pub lp_token_id: TokenIdentifier<M>,
     pub first_token_id: TokenIdentifier<M>,

@@ -11,13 +11,13 @@ use crate::{
     wrapped_lp_attributes::{merge_wrapped_lp_tokens, WrappedLpToken},
 };
 
+#[type_abi]
 #[derive(
     ManagedVecItem,
     TopEncode,
     TopDecode,
     NestedEncode,
     NestedDecode,
-    TypeAbi,
     Clone,
     PartialEq,
     Debug,

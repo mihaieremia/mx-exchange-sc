@@ -4,7 +4,8 @@ multiversx_sc::derive_imports!();
 use crate::error_messages::*;
 use crate::locked_token::{LockedTokenAttributes, PreviousStatusFlag, UnlockedPaymentWrapper};
 
-#[derive(TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
 pub struct LpProxyTokenAttributes<M: ManagedTypeApi> {
     pub lp_token_id: TokenIdentifier<M>,
     pub first_token_id: TokenIdentifier<M>,

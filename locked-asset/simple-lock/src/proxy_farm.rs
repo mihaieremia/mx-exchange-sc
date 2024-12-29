@@ -3,15 +3,15 @@ multiversx_sc::derive_imports!();
 
 use crate::{error_messages::*, proxy_lp::LpProxyTokenAttributes};
 
-#[derive(
-    TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug, Clone, Copy,
-)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug, Clone, Copy)]
 pub enum FarmType {
     SimpleFarm,
     FarmWithLockedRewards,
 }
 
-#[derive(TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
 pub struct FarmProxyTokenAttributes<M: ManagedTypeApi> {
     pub farm_type: FarmType,
     pub farm_token_id: TokenIdentifier<M>,

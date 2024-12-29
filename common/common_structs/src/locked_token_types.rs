@@ -7,42 +7,27 @@ pub const MAX_MILESTONES_IN_SCHEDULE: usize = 64;
 pub const PERCENTAGE_TOTAL_EX: u64 = 100_000u64;
 pub const PRECISION_EX_INCREASE: u64 = 1_000u64; // From 1 to 1_000;
 
+#[type_abi]
 #[derive(
-    ManagedVecItem,
-    TopEncode,
-    TopDecode,
-    PartialEq,
-    TypeAbi,
-    NestedEncode,
-    NestedDecode,
-    Clone,
-    Copy,
-    Debug,
+    ManagedVecItem, TopEncode, TopDecode, PartialEq, NestedEncode, NestedDecode, Clone, Copy, Debug,
 )]
 pub struct UnlockMilestone {
     pub unlock_epoch: u64,
     pub unlock_percent: u8,
 }
 
+#[type_abi]
 #[derive(
-    ManagedVecItem,
-    TopEncode,
-    TopDecode,
-    PartialEq,
-    TypeAbi,
-    NestedEncode,
-    NestedDecode,
-    Clone,
-    Copy,
-    Debug,
+    ManagedVecItem, TopEncode, TopDecode, PartialEq, NestedEncode, NestedDecode, Clone, Copy, Debug,
 )]
 pub struct UnlockMilestoneEx {
     pub unlock_epoch: u64,
     pub unlock_percent: u64,
 }
 
+#[type_abi]
 #[derive(
-    TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, ManagedVecItem, TypeAbi, Debug,
+    TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, ManagedVecItem, Debug,
 )]
 pub struct UnlockSchedule<M: ManagedTypeApi> {
     pub unlock_milestones: ManagedVec<M, UnlockMilestone>,
@@ -54,16 +39,9 @@ impl<M: ManagedTypeApi> UnlockSchedule<M> {
     }
 }
 
+#[type_abi]
 #[derive(
-    TopEncode,
-    TopDecode,
-    NestedEncode,
-    NestedDecode,
-    Clone,
-    ManagedVecItem,
-    TypeAbi,
-    PartialEq,
-    Debug,
+    TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, ManagedVecItem, PartialEq, Debug,
 )]
 pub struct UnlockScheduleEx<M: ManagedTypeApi> {
     pub unlock_milestones: ManagedVec<M, UnlockMilestoneEx>,
@@ -126,21 +104,22 @@ impl<M: ManagedTypeApi> UnlockScheduleEx<M> {
     }
 }
 
+#[type_abi]
 #[derive(
-    ManagedVecItem, TopEncode, TopDecode, NestedEncode, NestedDecode, TypeAbi, Clone, Debug,
+    ManagedVecItem, TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Debug,
 )]
 pub struct LockedAssetTokenAttributes<M: ManagedTypeApi> {
     pub unlock_schedule: UnlockSchedule<M>,
     pub is_merged: bool,
 }
 
+#[type_abi]
 #[derive(
     ManagedVecItem,
     TopEncode,
     TopDecode,
     NestedEncode,
     NestedDecode,
-    TypeAbi,
     Clone,
     PartialEq,
     Debug,
@@ -206,7 +185,8 @@ impl<M: ManagedTypeApi> LockedAssetTokenAttributesEx<M> {
     }
 }
 
-#[derive(TypeAbi, TopEncode, TopDecode)]
+#[type_abi]
+#[derive(TopEncode, TopDecode)]
 pub struct UnlockEpochAmountPairs<M: ManagedTypeApi> {
     pub pairs: ArrayVec<EpochAmountPair<M>, MAX_MILESTONES_IN_SCHEDULE>,
 }

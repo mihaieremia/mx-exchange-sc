@@ -9,7 +9,8 @@ use super::common_result_types::{SwapTokensFixedInputResultType, SwapTokensFixed
 multiversx_sc::imports!();
 multiversx_sc::derive_imports!();
 
-#[derive(TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Copy)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, Clone, Copy)]
 pub enum SwapType {
     FixedInput,
     FixedOutput,

@@ -3,7 +3,8 @@ use fixed_supply_token::FixedSupplyToken;
 multiversx_sc::imports!();
 multiversx_sc::derive_imports!();
 
-#[derive(TypeAbi, TopEncode, TopDecode, Clone, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, Clone, PartialEq, Debug)]
 pub struct DualYieldTokenAttributes<M: ManagedTypeApi> {
     pub lp_farm_token_nonce: u64,
     pub lp_farm_token_amount: BigUint<M>,

@@ -3,16 +3,16 @@ multiversx_sc::derive_imports!();
 
 use crate::error_messages::*;
 
-#[derive(
-    TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug, Clone, Copy,
-)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug, Clone, Copy)]
 pub enum FarmType {
     SimpleFarm,
     FarmWithLockedRewards,
-    FarmWithBoostedRewards
+    FarmWithBoostedRewards,
 }
 
-#[derive(TypeAbi, TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
+#[type_abi]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, PartialEq, Debug)]
 pub struct FarmProxyTokenAttributes<M: ManagedTypeApi> {
     pub farm_type: FarmType,
     pub farm_token_id: TokenIdentifier<M>,
