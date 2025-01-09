@@ -34,8 +34,8 @@ where
                 M::error_api_impl().signal_error(ERROR_BAD_PAYMENTS);
             }
         }
-
-        let first_payment = payments.get(0);
+        let vc: ManagedVec<M, EsdtTokenPayment<M>> = payments.clone().as_ref().clone_value();
+        let first_payment = vc.get(0);
         payments.remove(0);
 
         let own_sc_address = api_wrapper.get_sc_address();
@@ -48,7 +48,7 @@ where
 
         ClaimRewardsContext {
             first_farm_token: PaymentAttributesPair {
-                payment: first_payment,
+                payment: first_payment.clone(),
                 attributes: first_token_attributes,
             },
             additional_payments: payments,

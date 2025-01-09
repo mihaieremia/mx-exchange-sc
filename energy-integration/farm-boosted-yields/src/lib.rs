@@ -110,7 +110,7 @@ pub trait FarmBoostedYieldsModule:
 
         let mut total = BigUint::zero();
         for rew in &rewards {
-            total += rew.amount;
+            total += &rew.amount;
         }
 
         total
@@ -256,7 +256,7 @@ where
                 .update(|amount| *amount -= &user_reward);
 
             user_rewards.push(EsdtTokenPayment::new(
-                weekly_reward.token_identifier,
+                weekly_reward.token_identifier.clone(),
                 0,
                 user_reward,
             ));

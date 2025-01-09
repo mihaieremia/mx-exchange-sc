@@ -60,13 +60,13 @@ pub trait SwapModule:
         );
 
         let mut swap_context = SwapContext::new(
-            payment.token_identifier,
+            payment.token_identifier.clone(),
             payment.amount.clone(),
             token_out,
             BigUint::from(1u32),
             swap_tokens_order,
         );
-        swap_context.final_input_amount = payment.amount;
+        swap_context.final_input_amount = payment.amount.clone();
 
         let amount_out = self.swap_safe_no_fee(
             &mut storage_cache,
@@ -125,8 +125,8 @@ pub trait SwapModule:
         );
 
         let mut swap_context = SwapContext::new(
-            payment.token_identifier,
-            payment.amount,
+            payment.token_identifier.clone(),
+            payment.amount.clone(),
             token_out,
             amount_out_min,
             swap_tokens_order,
@@ -197,8 +197,8 @@ pub trait SwapModule:
         );
 
         let mut swap_context = SwapContext::new(
-            payment.token_identifier,
-            payment.amount,
+            payment.token_identifier.clone(),
+            payment.amount.clone(),
             token_out,
             amount_out,
             swap_tokens_order,

@@ -41,10 +41,11 @@ pub trait UtilsModule {
     ) -> EsdtTokenPayment<Self::Api> {
         require!(!payments.is_empty(), ERR_EMPTY_PAYMENTS);
 
-        let first_payment = payments.get(0);
+        let vc = payments.as_ref().clone_value();
+        let first_payment = vc.get(0);
         payments.remove(0);
 
-        first_payment
+        first_payment.as_refs().to_owned_payment()
     }
 
     fn get_attributes_as_part_of_fixed_supply<T: FixedSupplyToken<Self::Api> + TopDecode>(

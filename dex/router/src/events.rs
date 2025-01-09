@@ -106,7 +106,7 @@ pub trait EventsModule {
         let epoch = self.blockchain().get_block_epoch();
         let timestamp = self.blockchain().get_block_timestamp();
         let last_payment_index = payments_out.len() - 1;
-        let token_out = payments_out.get(last_payment_index);
+        let token_out = payments_out.get(last_payment_index).clone();
         self.multi_pair_swap_event(
             caller.clone(),
             token_in.clone(),

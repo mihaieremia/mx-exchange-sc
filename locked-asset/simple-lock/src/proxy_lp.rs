@@ -35,7 +35,7 @@ pub trait ProxyLpModule:
         token_ticker: ManagedBuffer,
         num_decimals: usize,
     ) {
-        let payment_amount = self.call_value().egld_value().clone_value();
+        let payment_amount = self.call_value().egld().clone_value();
 
         self.lp_proxy_token().issue_and_set_all_roles(
             EsdtTokenType::Meta,
@@ -139,7 +139,7 @@ pub trait ProxyLpModule:
     ) -> AddLiquidityThroughProxyResultType<Self::Api> {
         let [first_payment, second_payment] = self.call_value().multi_esdt();
         let (mut first_payment_unlocked_wrapper, mut second_payment_unlocked_wrapper) =
-            self.unlock_lp_payments(first_payment, second_payment);
+            self.unlock_lp_payments(first_payment.as_refs().to_owned_payment(), second_payment.as_refs().to_owned_payment());
         let lp_address = self.try_get_lp_address_and_fix_token_order(
             &mut first_payment_unlocked_wrapper,
             &mut second_payment_unlocked_wrapper,
@@ -236,7 +236,7 @@ pub trait ProxyLpModule:
         first_token_amount_min: BigUint,
         second_token_amount_min: BigUint,
     ) -> RemoveLiquidityThroughProxyResultType<Self::Api> {
-        let payment: EsdtTokenPayment<Self::Api> = self.call_value().single_esdt();
+        let payment: EsdtTokenPayment<Self::Api> = self.call_value().single_esdt().as_refs().to_owned_payment();
 
         self.remove_liquidity_locked_token_common(
             payment,

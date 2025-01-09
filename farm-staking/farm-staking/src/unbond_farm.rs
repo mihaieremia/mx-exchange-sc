@@ -35,7 +35,7 @@ pub trait UnbondFarmModule:
         self.validate_contract_state(storage_cache.contract_state, &storage_cache.farm_token_id);
 
         let farm_token_mapper = self.farm_token();
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
         farm_token_mapper.require_same_token(&payment.token_identifier);
 
         let attributes: UnbondSftAttributes =

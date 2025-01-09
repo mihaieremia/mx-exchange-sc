@@ -22,7 +22,7 @@ pub trait ProxyStakeModule:
         let caller = self.blockchain().get_caller();
         let orig_caller = self.get_orig_caller_from_opt(&caller, opt_orig_caller);
         let payments = self.get_non_empty_payments();
-        let lp_farm_token_payment = payments.get(0);
+        let lp_farm_token_payment = payments.get(0).clone();
         let additional_payments = payments.slice(1, payments.len()).unwrap_or_default();
 
         let lp_farm_token_id = self.lp_farm_token_id().get();

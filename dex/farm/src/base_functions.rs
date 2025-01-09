@@ -150,7 +150,7 @@ pub trait BaseFunctionsModule:
     fn exit_farm<FC: FarmContract<FarmSc = Self>>(
         &self,
         caller: ManagedAddress,
-        payment: EsdtTokenPayment,
+        payment: &EsdtTokenPayment,
     ) -> ExitFarmResultWrapper<Self::Api> {
         let base_exit_farm_result = self.exit_farm_base::<FC>(caller.clone(), payment);
 
@@ -213,7 +213,7 @@ pub trait BaseFunctionsModule:
             if farm_position.token_identifier == farm_token_id
                 && self.is_old_farm_position(farm_position.token_nonce)
             {
-                migrated_amount += farm_position.amount;
+                migrated_amount += &farm_position.amount;
             }
         }
 

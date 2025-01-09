@@ -40,7 +40,7 @@ pub trait UnlockWithPenaltyModule:
     fn unlock_early(&self) {
         self.require_not_paused();
         let caller = self.blockchain().get_caller();
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
         let reduce_result = self.reduce_lock_period_common(&caller, payment.clone(), None);
 
         let unlocked_tokens = self.to_esdt_payment(reduce_result.unlocked_tokens);
@@ -83,7 +83,7 @@ pub trait UnlockWithPenaltyModule:
         );
         if penalty_amount > 0 {
             let fees = EsdtTokenPayment::new(
-                payment.token_identifier,
+                payment.token_identifier.clone(),
                 payment.token_nonce,
                 penalty_amount,
             );

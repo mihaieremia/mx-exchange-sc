@@ -94,7 +94,7 @@ impl<M: ManagedTypeApi> UnlockScheduleEx<M> {
         let leftover_percent = PERCENTAGE_TOTAL_EX - new_total;
         if leftover_percent > 0 {
             let last_milestone_index = reallocated_milestones.len() - 1;
-            let mut last_milestone = reallocated_milestones.get(last_milestone_index);
+            let mut last_milestone = reallocated_milestones.get(last_milestone_index).clone();
             last_milestone.unlock_percent += leftover_percent;
 
             let _ = reallocated_milestones.set(last_milestone_index, last_milestone);
@@ -132,7 +132,7 @@ pub struct LockedAssetTokenAttributesEx<M: ManagedTypeApi> {
 impl<M: ManagedTypeApi> LockedAssetTokenAttributes<M> {
     pub fn migrate_to_new_attributes(&self) -> LockedAssetTokenAttributesEx<M> {
         let mut updated_unlock_milestones: ManagedVec<M, UnlockMilestoneEx> = ManagedVec::new();
-        for unlock_milestone in self.unlock_schedule.unlock_milestones.into_iter() {
+        for unlock_milestone in self.unlock_schedule.unlock_milestones.clone().into_iter(){
             let updated_milestone = UnlockMilestoneEx {
                 unlock_epoch: unlock_milestone.unlock_epoch,
                 unlock_percent: unlock_milestone.unlock_percent as u64 * PRECISION_EX_INCREASE,

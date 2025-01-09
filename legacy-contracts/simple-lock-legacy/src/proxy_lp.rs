@@ -32,7 +32,7 @@ pub trait ProxyLpModule: crate::locked_token::LockedTokenModule {
             &payment.amount,
         );
 
-        let output_token_payment = EsdtTokenPayment::new(unlocked_lp_token_id, 0, payment.amount);
+        let output_token_payment = EsdtTokenPayment::new(unlocked_lp_token_id, 0, payment.amount.clone());
         self.send().direct_esdt(
             &caller,
             &output_token_payment.token_identifier,

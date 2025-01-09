@@ -27,7 +27,7 @@ pub trait SimpleLockLegacy:
         &self,
         opt_destination: OptionalValue<ManagedAddress>,
     ) -> EgldOrEsdtTokenPayment<Self::Api> {
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
         let dest_address = self.dest_from_optional(opt_destination);
         self.unlock_and_send(&dest_address, payment)
     }

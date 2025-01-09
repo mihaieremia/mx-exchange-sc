@@ -5,7 +5,7 @@ use common_structs::FarmTokenAttributes;
 use config::ConfigModule;
 use multiversx_sc::codec::multi_types::OptionalValue;
 use multiversx_sc::{
-    storage::mappers::StorageTokenWrapper,
+    
     types::{Address, BigInt, EsdtLocalRole, MultiValueEncoded},
 };
 use multiversx_sc_scenario::whitebox_legacy::TxTokenTransfer;

@@ -69,7 +69,7 @@ impl<M: ManagedTypeApi + StorageMapperApi + CallTypeApi> WrappedLpToken<M> {
             let attributes: WrappedLpTokenAttributes<M> =
                 wrapped_token_mapper.get_token_attributes(payment.token_nonce);
             let wrapped_lp_token = WrappedLpToken {
-                payment,
+                payment: payment.as_refs().to_owned_payment(),
                 attributes,
             };
 
@@ -87,7 +87,7 @@ pub fn merge_wrapped_lp_tokens<M: CallTypeApi + StorageMapperApi>(
     wrapped_lp_token_mapper: &NonFungibleTokenMapper<M>,
     mut wrapped_lp_tokens: ManagedVec<M, WrappedLpToken<M>>,
 ) -> WrappedLpToken<M> {
-    let first_item = wrapped_lp_tokens.get(0);
+    let first_item = wrapped_lp_tokens.get(0).clone();
     wrapped_lp_tokens.remove(0);
 
     let first_token_attributes = first_item.attributes.into_part(&first_item.payment.amount);
@@ -96,7 +96,7 @@ pub fn merge_wrapped_lp_tokens<M: CallTypeApi + StorageMapperApi>(
         ManagedVec::from_single_item(first_token_attributes.locked_tokens.clone());
     let mut total_lp_tokens = first_token_attributes.lp_token_amount.clone();
     for wrapped_lp in &wrapped_lp_tokens {
-        let attributes = wrapped_lp.attributes.into_part(&wrapped_lp.payment.amount);
+        let attributes = wrapped_lp.attributes.clone().into_part(&wrapped_lp.payment.amount);
         first_token_attributes.error_if_not_externally_mergeable(&attributes);
 
         total_lp_tokens += attributes.lp_token_amount;

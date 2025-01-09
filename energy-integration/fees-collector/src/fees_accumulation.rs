@@ -20,7 +20,7 @@ pub trait FeesAccumulationModule:
             "Only known contracts can deposit"
         );
 
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
         require!(
             self.known_tokens().contains(&payment.token_identifier),
             "Invalid payment token"

@@ -68,7 +68,7 @@ pub trait WrappedLpTokenMerge:
         wrapped_lp_tokens: ManagedVec<WrappedLpToken<Self::Api>>,
     ) -> WrappedLpToken<Self::Api> {
         let locked_token_id = wrapped_lp_tokens
-            .get(0)
+            .get(0).clone()
             .attributes
             .locked_tokens
             .token_identifier;

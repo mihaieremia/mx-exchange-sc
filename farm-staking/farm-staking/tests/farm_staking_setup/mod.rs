@@ -3,7 +3,6 @@
 use farm_staking::claim_only_boosted_staking_rewards::ClaimOnlyBoostedStakingRewardsModule;
 use farm_staking::compound_stake_farm_rewards::CompoundStakeFarmRewardsModule;
 use multiversx_sc::codec::multi_types::OptionalValue;
-use multiversx_sc::storage::mappers::StorageTokenWrapper;
 use multiversx_sc::types::{Address, BigInt, EsdtLocalRole, ManagedAddress, MultiValueEncoded};
 use multiversx_sc_scenario::whitebox_legacy::TxTokenTransfer;
 use multiversx_sc_scenario::{

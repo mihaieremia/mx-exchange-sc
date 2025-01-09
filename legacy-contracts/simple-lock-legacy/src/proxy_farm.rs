@@ -29,7 +29,7 @@ pub trait ProxyFarmModule:
     #[payable("*")]
     #[endpoint(exitFarmLockedToken)]
     fn exit_farm_locked_token(&self) -> EsdtTokenPayment {
-        let payment: EsdtTokenPayment<Self::Api> = self.call_value().single_esdt();
+        let payment: EsdtTokenPayment<Self::Api> = self.call_value().single_esdt().as_refs().to_owned_payment();
         let caller = self.blockchain().get_caller();
 
         let farm_proxy_token_attributes: FarmProxyTokenAttributes<Self::Api> =

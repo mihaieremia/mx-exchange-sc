@@ -40,8 +40,8 @@ pub trait FeesHandlerModule:
             .update(|unstake_pairs| {
                 let unstake_pair = UnstakePair {
                     unlock_epoch,
-                    locked_tokens,
-                    unlocked_tokens,
+                    locked_tokens: locked_tokens.clone(),
+                    unlocked_tokens: unlocked_tokens.clone(),
                 };
                 unstake_pairs.push(unstake_pair);
             });
@@ -60,7 +60,7 @@ pub trait FeesHandlerModule:
             "Only energy factory may deposit fees"
         );
 
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
         let locked_token_id = self.get_locked_token_id();
         require!(payment.token_identifier == locked_token_id, "Invalid token");
 

@@ -33,7 +33,7 @@ pub trait BaseExitFarmModule:
     fn exit_farm_base<FC: FarmContract<FarmSc = Self>>(
         &self,
         caller: ManagedAddress,
-        payment: EsdtTokenPayment<Self::Api>,
+        payment: &EsdtTokenPayment<Self::Api>,
     ) -> InternalExitFarmResult<Self, FC::AttributesType> {
         let mut storage_cache = StorageCache::new(self);
         self.validate_contract_state(storage_cache.contract_state, &storage_cache.farm_token_id);

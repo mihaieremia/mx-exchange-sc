@@ -164,11 +164,11 @@ pub trait Farm:
         let caller = self.blockchain().get_caller();
         let orig_caller = self.get_orig_caller_from_opt(&caller, opt_orig_caller);
 
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
 
         let migrated_amount = self.migrate_old_farm_positions(&orig_caller);
 
-        let exit_farm_result = self.exit_farm::<Wrapper<Self>>(orig_caller.clone(), payment);
+        let exit_farm_result = self.exit_farm::<Wrapper<Self>>(orig_caller.clone(), &payment);
 
         self.decrease_old_farm_positions(migrated_amount, &orig_caller);
 

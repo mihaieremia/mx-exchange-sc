@@ -170,8 +170,8 @@ pub trait PriceDiscovery:
         let phase = self.get_current_phase();
         self.require_withdraw_allowed(&phase);
 
-        let (payment_token, payment_nonce, payment_amount) =
-            self.call_value().single_esdt().into_tuple();
+        let payment = self.call_value().single_esdt();
+        let (payment_token, payment_nonce, payment_amount) = payment.clone().into_tuple();
         let redeem_token_id = self.redeem_token().get_token_id();
         require!(payment_token == redeem_token_id, INVALID_PAYMENT_ERR_MSG);
 
@@ -230,7 +230,7 @@ pub trait PriceDiscovery:
         self.require_redeem_allowed(&phase);
 
         let (payment_token, payment_nonce, payment_amount) =
-            self.call_value().single_esdt().into_tuple();
+            self.call_value().single_esdt().clone().into_tuple();
         let redeem_token_id = self.redeem_token().get_token_id();
         require!(payment_token == redeem_token_id, INVALID_PAYMENT_ERR_MSG);
 

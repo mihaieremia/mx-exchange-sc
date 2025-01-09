@@ -19,7 +19,7 @@ pub trait UnbondTokensModule:
         self.unlocked_tokens_for_user(&caller)
             .update(|user_entries| {
                 while !user_entries.is_empty() {
-                    let entry = user_entries.get(0);
+                    let entry = user_entries.get(0).clone();
                     if current_epoch < entry.unlock_epoch {
                         break;
                     }
@@ -54,7 +54,7 @@ pub trait UnbondTokensModule:
         require!(!output_payments.is_empty(), "Nothing to unbond");
 
         for token in &penalty_tokens {
-            self.burn_penalty(token);
+            self.burn_penalty(token.clone());
         }
 
         self.send().direct_multi(&caller, &output_payments);

@@ -39,9 +39,9 @@ pub trait UnstakeFarmModule:
     ) -> ExitFarmWithPartialPosResultType<Self::Api> {
         let caller = self.blockchain().get_caller();
         let original_caller = self.get_orig_caller_from_opt(&caller, opt_original_caller);
-        let payment = self.call_value().single_esdt();
+        let payment = self.call_value().single_esdt().as_refs().to_owned_payment();
 
-        self.unstake_farm_common(original_caller, payment, None)
+        self.unstake_farm_common(original_caller, &payment, None)
     }
 
     #[payable("*")]
@@ -63,13 +63,17 @@ pub trait UnstakeFarmModule:
             "Invalid staking token received"
         );
 
-        self.unstake_farm_common(original_caller, second_payment, Some(first_payment.amount))
+        self.unstake_farm_common(
+            original_caller,
+            &second_payment,
+            Some(first_payment.amount.clone()),
+        )
     }
 
     fn unstake_farm_common(
         &self,
         original_caller: ManagedAddress,
-        payment: EsdtTokenPayment,
+        payment: &EsdtTokenPayment,
         opt_unbond_amount: Option<BigUint>,
     ) -> ExitFarmWithPartialPosResultType<Self::Api> {
         let migrated_amount = self.migrate_old_farm_positions(&original_caller);

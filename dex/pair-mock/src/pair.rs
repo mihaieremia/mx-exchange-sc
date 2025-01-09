@@ -73,7 +73,7 @@ pub trait PairMock {
             "LP token not issued"
         );
 
-        let (first_payment, second_payment) = payments
+        let (first_payment, second_payment) = payments.clone_value()
             .into_iter()
             .collect_tuple()
             .ok_or("bad payments len")

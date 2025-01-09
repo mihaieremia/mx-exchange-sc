@@ -79,7 +79,7 @@ pub trait ProxyDexImpl:
         token_ticker: ManagedBuffer,
         num_decimals: usize,
     ) {
-        let register_cost = self.call_value().egld_value().clone_value();
+        let register_cost = self.call_value().egld().clone_value();
         self.wrapped_lp_token().issue_and_set_all_roles(
             EsdtTokenType::Meta,
             register_cost,
@@ -114,7 +114,7 @@ pub trait ProxyDexImpl:
         token_ticker: ManagedBuffer,
         num_decimals: usize,
     ) {
-        let register_cost = self.call_value().egld_value().clone_value();
+        let register_cost = self.call_value().egld().clone_value();
         self.wrapped_farm_token().issue_and_set_all_roles(
             EsdtTokenType::Meta,
             register_cost,
