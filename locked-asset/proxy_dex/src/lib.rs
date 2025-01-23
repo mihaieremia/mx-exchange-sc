@@ -100,7 +100,7 @@ pub trait ProxyDexImpl:
 
         self.wrapped_lp_token().set_local_roles_for_address(
             &address,
-            &[EsdtLocalRole::Transfer],
+            &[EsdtLocalRole::None],
             None,
         );
     }
@@ -135,7 +135,7 @@ pub trait ProxyDexImpl:
 
         self.wrapped_farm_token().set_local_roles_for_address(
             &address,
-            &[EsdtLocalRole::Transfer],
+            &[EsdtLocalRole::None],
             None,
         );
     }

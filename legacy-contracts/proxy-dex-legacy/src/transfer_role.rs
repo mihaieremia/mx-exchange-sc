@@ -13,7 +13,7 @@ pub trait TransferRoleModule: proxy_common::ProxyCommonModule {
             OptionalValue::Some(addr) => addr,
             OptionalValue::None => self.blockchain().get_sc_address(),
         };
-        let roles = [EsdtLocalRole::Transfer];
+        let roles = [EsdtLocalRole::None];
 
         self.send()
             .esdt_system_sc_proxy()
@@ -34,7 +34,7 @@ pub trait TransferRoleModule: proxy_common::ProxyCommonModule {
             OptionalValue::Some(addr) => addr,
             OptionalValue::None => self.blockchain().get_sc_address(),
         };
-        let roles = [EsdtLocalRole::Transfer];
+        let roles = [EsdtLocalRole::None];
 
         self.send()
             .esdt_system_sc_proxy()
@@ -55,7 +55,7 @@ pub trait TransferRoleModule: proxy_common::ProxyCommonModule {
             OptionalValue::Some(addr) => addr,
             OptionalValue::None => self.blockchain().get_sc_address(),
         };
-        let roles = [EsdtLocalRole::Transfer];
+        let roles = [EsdtLocalRole::None];
 
         self.send()
             .esdt_system_sc_proxy()
@@ -76,7 +76,7 @@ pub trait TransferRoleModule: proxy_common::ProxyCommonModule {
             OptionalValue::Some(addr) => addr,
             OptionalValue::None => self.blockchain().get_sc_address(),
         };
-        let roles = [EsdtLocalRole::Transfer];
+        let roles = [EsdtLocalRole::None];
 
         self.send()
             .esdt_system_sc_proxy()

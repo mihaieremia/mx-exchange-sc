@@ -16,7 +16,7 @@ pub trait LocalRolesModule:
         };
 
         self.locked_token()
-            .set_local_roles_for_address(&address, &[EsdtLocalRole::Transfer], None);
+            .set_local_roles_for_address(&address, &[EsdtLocalRole::None], None);
     }
 
     /// Sets the burn role for the given address

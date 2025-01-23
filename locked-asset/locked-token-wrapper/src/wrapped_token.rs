@@ -47,7 +47,7 @@ pub trait WrappedTokenModule:
 
         self.wrapped_token().set_local_roles_for_address(
             &address,
-            &[EsdtLocalRole::Transfer],
+            &[EsdtLocalRole::None],
             None,
         );
     }
@@ -62,7 +62,7 @@ pub trait WrappedTokenModule:
             .unset_special_roles(
                 &address,
                 &wrapped_token_id,
-                [EsdtLocalRole::Transfer][..].iter().cloned(),
+                [EsdtLocalRole::None][..].iter().cloned(),
             )
             .async_call()
             .call_and_exit();

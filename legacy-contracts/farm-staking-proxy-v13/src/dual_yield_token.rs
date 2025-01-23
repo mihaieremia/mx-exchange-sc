@@ -26,7 +26,7 @@ pub trait DualYieldTokenModule: token_merge_helper::TokenMergeHelperModule {
     fn set_transfer_role_dual_yield_token(&self, opt_address: OptionalValue<ManagedAddress>) {
         let address = self.resolve_address(opt_address);
         let token_id = self.dual_yield_token_id().get();
-        let roles = [EsdtLocalRole::Transfer];
+        let roles = [EsdtLocalRole::None];
 
         self.send()
             .esdt_system_sc_proxy()

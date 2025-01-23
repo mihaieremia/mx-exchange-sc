@@ -283,7 +283,7 @@ pub trait LockedAssetFactory:
             .set_special_roles(
                 &address,
                 &self.locked_asset_token_id().get(),
-                [EsdtLocalRole::Transfer][..].iter().cloned(),
+                [EsdtLocalRole::None][..].iter().cloned(),
             )
             .async_call_and_exit()
     }
@@ -301,7 +301,7 @@ pub trait LockedAssetFactory:
             .unset_special_roles(
                 &address,
                 &self.locked_asset_token_id().get(),
-                [EsdtLocalRole::Transfer][..].iter().cloned(),
+                [EsdtLocalRole::None][..].iter().cloned(),
             )
             .async_call_and_exit()
     }
